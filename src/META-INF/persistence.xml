@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Fakultet">
+		<class>entity.Administrator</class>
+		<class>entity.Department</class>
+		<class>entity.Ispit</class>
+		<class>entity.KorisnickiNalog</class>
+		<class>entity.Korisnik</class>
+		<class>entity.Predmet</class>
+		<class>entity.PredmetStudProgram</class>
+		<class>entity.Profesor</class>
+		<class>entity.ProfesorPredmet</class>
+		<class>entity.Student</class>
+		<class>entity.StudijskiProgram</class>
+		<class>entity.UpisaniPredmet</class>
+	</persistence-unit>
+</persistence>
