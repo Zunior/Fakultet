@@ -1,10 +1,10 @@
-package action.impl.department;
+package action.impl.profesor;
 
 import javax.servlet.http.HttpServletRequest;
 
 import action.AbstractAction;
 
-public class DepartentDeleteAction extends AbstractAction {
+public class ProfesorEditAction extends AbstractAction {
 
 	@Override
 	public String execute(HttpServletRequest request) {

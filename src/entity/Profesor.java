@@ -12,9 +12,17 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries(
+		{
+			@NamedQuery(name="Profesor.findAll", query="SELECT p FROM Profesor p"),
+			@NamedQuery(name="Profesor.findImePrezime", 
+								query="SELECT p FROM Profesor p WHERE p.ime = :ime AND p.prezime = :prezime")
+		})
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "PROFESOR_ID")) })
 public class Profesor extends Korisnik {
 
@@ -24,7 +32,7 @@ public class Profesor extends Korisnik {
 
 	private Date datumRadnogOdnosa;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "DEPARTMENT_ID")
 	private Department department;
 

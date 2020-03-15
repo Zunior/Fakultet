@@ -11,12 +11,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKey;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import exceptions.DataAlreadyPresent;
 
 @Entity
+@NamedQueries(
+		{
+			@NamedQuery(name="Department.findAll", query="SELECT d FROM Department d"),
+			@NamedQuery(name="Department.findNaziv", 
+								query="SELECT d FROM Department d WHERE d.naziv = :naziv")
+		})
 @Table(name = "DEPARTMENT")
 public class Department{
 	@Id
