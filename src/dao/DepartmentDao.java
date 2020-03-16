@@ -9,5 +9,6 @@ public interface DepartmentDao {
 	void save(Department department) throws DataAlreadyPresent;
 	
 	List<Department> getAll();
+	
 	Department findByNaziv(String naziv);
 }

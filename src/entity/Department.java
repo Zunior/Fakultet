@@ -2,7 +2,6 @@ package entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +29,7 @@ public class Department{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "NAZIV", unique = true)
+	@Column(name = "NAZIV", unique = true, nullable = false)
 	private String naziv;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department", orphanRemoval = true)
@@ -94,24 +93,29 @@ public class Department{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if(!(obj instanceof Department))
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Department other = (Department) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (naziv == null) {
-			if (other.naziv != null)
-				return false;
-		} else if (!naziv.equals(other.naziv))
-			return false;
-		return true;
+		Department d = (Department) obj;
+		return d.getNaziv().equalsIgnoreCase(this.getNaziv());
+		
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Department other = (Department) obj;
+//		if (id == null) {
+//			if (other.id != null)
+//				return false;
+//		} else if (!id.equals(other.id))
+//			return false;
+//		if (naziv == null) {
+//			if (other.naziv != null)
+//				return false;
+//		} else if (!naziv.equals(other.naziv))
+//			return false;
+//		return true;
 	}
 
 	@Override

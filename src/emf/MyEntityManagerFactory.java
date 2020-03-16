@@ -8,7 +8,7 @@ public class MyEntityManagerFactory {
 	private EntityManagerFactory emf;
 	
 	private MyEntityManagerFactory() {
-		emf = Persistence.createEntityManagerFactory("WebApplicationMVC");
+		emf = Persistence.createEntityManagerFactory("Fakultet");
 	}
 	
 	public static MyEntityManagerFactory getInstance() {

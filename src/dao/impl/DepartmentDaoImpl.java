@@ -3,6 +3,7 @@ package dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import dao.DepartmentDao;
 import entity.Department;
@@ -15,16 +16,18 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		EntityManager em = emf.MyEntityManagerFactory.getInstance()
 				.getEntityManagerFactory().createEntityManager();
 		
-		try {
+//		try {
 			em.getTransaction().begin();
 			em.persist(department);
 			em.getTransaction().commit();
-		}catch(Exception e) {
-			em.getTransaction().rollback();
-			throw new DataAlreadyPresent("Zadato odeljenje vec postoji!");
-		}finally {
+//		}catch(Exception e) {
+//			if(em.getTransaction().isActive()) {
+//				em.getTransaction().rollback();
+//			}
+//			throw new DataAlreadyPresent("Zadato odeljenje vec postoji!");
+//		}finally {
 			em.close();
-		}
+//		}
 		
 	}
 
@@ -44,16 +47,15 @@ public class DepartmentDaoImpl implements DepartmentDao{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Department findByNaziv(String naziv) {
 		EntityManager em = emf.MyEntityManagerFactory.getInstance()
 				.getEntityManagerFactory().createEntityManager();
 		
 		try {
-			@SuppressWarnings("unchecked")
-			List<Department> odeljenja = (List<Department>) em.createNamedQuery("Department.findNaziv").setParameter("naziv", naziv)
-					.getSingleResult();
-			return odeljenja.get(0);
+			Department department = (Department) em.createNamedQuery("Department.findNaziv").setParameter("naziv", naziv).getSingleResult();
+			return department;
 		}catch(Exception e) {
 			return null;
 		}finally {
