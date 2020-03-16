@@ -1,3 +1,9 @@
+Department:
 saveDepartment
-Department.dodajProfesora
-Department.dodajStudijskiProgram
+saveProfesor
+list
+findByNaziv
+
+Profesor:
+list
+findByImeIPrezime

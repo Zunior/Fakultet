@@ -2,10 +2,13 @@ package service.impl;
 
 import java.util.List;
 
+import dao.DepartmentDao;
 import dao.ProfesorDao;
+import dao.impl.DepartmentDaoImpl;
 import dao.impl.ProfesorDaoImpl;
 import entity.Department;
 import entity.Profesor;
+import exceptions.DataAlreadyPresent;
 import service.ProfesorService;
 
 public class ProfesorServiceImpl implements ProfesorService{
@@ -16,8 +19,19 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 	
 	@Override
-	public void save(Profesor profesor, Department department) throws Exception {
+	public void saveProfesor(Profesor profesor, Department department) throws Exception {
+		DepartmentDao departmentDao = new DepartmentDaoImpl();
 		
+		if(departmentDao.findByNaziv(department.getNaziv()) != null) {
+			if(profesorDao.findByImePrezime(profesor.getIme(), profesor.getPrezime()) == null) {
+				departmentDao.saveProfesor(department, profesor);
+			}else {
+				throw new DataAlreadyPresent("Zadati profesor vec postoji u bazi!");
+			}
+		}else {
+			throw new DataAlreadyPresent("Navedeni department ne postoji u bazi");
+		}
+				
 		
 	}
 

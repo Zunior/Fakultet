@@ -10,17 +10,17 @@ import entity.Profesor;
 
 public class ProfesorDaoImpl implements ProfesorDao{
 
-	@Override
-	public void save(Profesor profesor) {
-		EntityManager em = emf.MyEntityManagerFactory.getInstance()
-				.getEntityManagerFactory().createEntityManager();
-		
-		em.getTransaction().begin();
-		em.persist(profesor);
-		em.getTransaction().commit();
-		em.close();
-		
-	}
+//	@Override
+//	public void save(Profesor profesor) {
+//		EntityManager em = emf.MyEntityManagerFactory.getInstance()
+//				.getEntityManagerFactory().createEntityManager();
+//		
+//		em.getTransaction().begin();
+//		em.persist(profesor);
+//		em.getTransaction().commit();
+//		em.close();
+//		
+//	}
 
 	@Override
 	public List<Profesor> getAll() {

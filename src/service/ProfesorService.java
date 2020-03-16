@@ -7,7 +7,7 @@ import entity.Profesor;
 
 public interface ProfesorService {
 	
-	public void save(Profesor profesor, Department department) throws Exception;
+	public void saveProfesor(Profesor profesor, Department department) throws Exception;
 	
 	List<Profesor> getAll() throws Exception;
 	

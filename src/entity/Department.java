@@ -123,7 +123,7 @@ public class Department{
 		return "Department [id=" + id + ", naziv=" + naziv + ", profesori=" + profesori + "]";
 	}
 	
-	public void dodajProfesora(Profesor dbProfesor) {
+	public void addProfesor(Profesor dbProfesor) {
 		dbProfesor.setDepartment(this);
 		getProfesori().add(dbProfesor);
 	}

@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import dao.DepartmentDao;
 import entity.Department;
+import entity.Profesor;
 import exceptions.DataAlreadyPresent;
 
 public class DepartmentDaoImpl implements DepartmentDao{
@@ -28,6 +29,25 @@ public class DepartmentDaoImpl implements DepartmentDao{
 //		}finally {
 			em.close();
 //		}
+		
+	}
+	
+	public void saveProfesor(Department department, Profesor profesor) {
+		EntityManager em = emf.MyEntityManagerFactory.getInstance()
+				.getEntityManagerFactory().createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(department);
+			em.persist(profesor);
+			profesor.setDepartment(department);
+			department.addProfesor(profesor);
+			em.getTransaction().commit();
+		}catch(Exception e) {
+			if(em.getTransaction().isActive())
+				em.getTransaction().rollback();
+		}finally {
+			em.close();
+		}
 		
 	}
 
