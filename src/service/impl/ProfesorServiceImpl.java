@@ -9,6 +9,7 @@ import dao.impl.ProfesorDaoImpl;
 import entity.Department;
 import entity.Profesor;
 import exceptions.DataAlreadyPresent;
+import exceptions.DataNotPresent;
 import service.ProfesorService;
 
 public class ProfesorServiceImpl implements ProfesorService{
@@ -19,7 +20,7 @@ public class ProfesorServiceImpl implements ProfesorService{
 	}
 	
 	@Override
-	public void saveProfesor(Profesor profesor, Department department) throws Exception {
+	public void saveProfesor(Profesor profesor, Department department) throws DataAlreadyPresent, DataNotPresent {
 		DepartmentDao departmentDao = new DepartmentDaoImpl();
 		
 		if(departmentDao.findByNaziv(department.getNaziv()) != null) {
@@ -29,17 +30,17 @@ public class ProfesorServiceImpl implements ProfesorService{
 				throw new DataAlreadyPresent("Zadati profesor vec postoji u bazi!");
 			}
 		}else {
-			throw new DataAlreadyPresent("Navedeni department ne postoji u bazi");
+			throw new DataNotPresent("Navedeni department ne postoji u bazi");
 		}
 				
 		
 	}
 
 	@Override
-	public List<Profesor> getAll() throws Exception {
+	public List<Profesor> getAll() throws DataNotPresent {
 		List<Profesor> profesori = profesorDao.getAll();
 		if(profesori == null)
-			throw new Exception("Ne postoji ni jedan profesor");
+			throw new DataNotPresent("Ne postoji ni jedan profesor");
 		else
 			return profesori;
 	}

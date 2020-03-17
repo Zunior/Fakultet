@@ -10,7 +10,7 @@ import action.impl.LogoutAction;
 
 public class ApplicationController {
 	
-	public String processRequest(String pathInfo, HttpServletRequest request) {
+	public String processRequest(String pathInfo, HttpServletRequest request){
 		/* u zavisnosti od pathinfo, kreirati klasu koja je potrebna za obradu zahteva*/
 		
 		String page ="/WEB-INF/pages/error/DefaultErrorPage.jsp";//default error page

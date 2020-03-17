@@ -17,6 +17,8 @@ public class Proba {
 		DepartmentService depServis = new DepartmentServiceImpl();
 		KorisnickiNalogService knServis = new KorisnickiNalogServiceImpl();
 		
+		
+		
 //			try {
 //				depServis.save(new Department("Mehanika"));
 //			} catch (Exception e) {
