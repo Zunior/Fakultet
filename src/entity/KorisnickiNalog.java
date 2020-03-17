@@ -2,11 +2,20 @@ package entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
 @Entity
+@NamedQueries(
+		{
+			@NamedQuery(name="KorisnickiNalog.findAll", query="SELECT kn FROM KorisnickiNalog kn")
+//			@NamedQuery(name="Profesor.findImePrezime", 
+//								query="SELECT p FROM Profesor p WHERE p.ime = :ime AND p.prezime = :prezime")
+		})
 @Table(name = "KORISNICKI_NALOG")
 public class KorisnickiNalog {
 	@Id
@@ -14,15 +23,19 @@ public class KorisnickiNalog {
 	private Long id;
 	private String username;
 	private String password;
-	
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "KORISNICKA_ULOGA")
+	private KorisnickaUloga korisnickaUloga;
+
 	public KorisnickiNalog() {
 
 	}
 
-	public KorisnickiNalog(String username, String password) {
-		super();
+	public KorisnickiNalog(String username, String password, KorisnickaUloga korisnickaUloga) {
 		this.username = username;
 		this.password = password;
+		this.korisnickaUloga = korisnickaUloga;
 	}
 
 	public Long getId() {
@@ -47,6 +60,14 @@ public class KorisnickiNalog {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public KorisnickaUloga getKorisnickaUloga() {
+		return korisnickaUloga;
+	}
+
+	public void setKorisnickaUloga(KorisnickaUloga korisnickaUloga) {
+		this.korisnickaUloga = korisnickaUloga;
 	}
 
 	@Override
@@ -79,8 +100,5 @@ public class KorisnickiNalog {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }
